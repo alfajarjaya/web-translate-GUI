@@ -3211,7 +3211,7 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/translate', methods=['POST'])
 def index():
     return render_template('index.html')
 
