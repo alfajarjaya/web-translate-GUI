@@ -3217,8 +3217,8 @@ def index():
 
 @app.route('/translate', methods=['GET'])
 def do_translate():
-    translate = request.form['translate']
-    pilihan = request.form['pilihan']
+    translate = request.args.get('translate')
+    pilihan = request.args.get('pilihan')
 
     if pilihan == "bahasa inggris":
         terjemahan = translateInggris(translate)
