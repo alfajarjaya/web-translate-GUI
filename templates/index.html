@@ -39,31 +39,28 @@
       function doTranslation() {
         var translateInput = document.getElementById("translateInput").value;
         var pilihanInput = document.getElementById("pilihanInput").value;
-
+    
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/translate", true);
-        xhr.setRequestHeader(
-          "Content-Type",
-          "application/x-www-form-urlencoded"
-        );
+        var url = "/translate?translate=" + encodeURIComponent(translateInput) + "&pilihan=" + encodeURIComponent(pilihanInput);
+    
+        xhr.open("GET", url, true);
         xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4 && xhr.status == 200) {
-            var response = JSON.parse(xhr.responseText);
-            if ("terjemahan" in response) {
-              document.getElementById("resultContainer").innerHTML =
-                "<p>" + response.terjemahan + "</p>";
-            } else {
-              alert("Error: " + response.error);
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if ("terjemahan" in response) {
+                        document.getElementById("resultContainer").innerHTML = "<p>" + response.terjemahan + "</p>";
+                    } else {
+                        alert("Error: " + response.error);
+                    }
+                } else {
+                    alert("Error: " + xhr.status);
+                }
             }
-          }
         };
-        xhr.send(
-          "translate=" +
-            encodeURIComponent(translateInput) +
-            "&pilihan=" +
-            encodeURIComponent(pilihanInput)
-        );
-      }
+    
+        xhr.send();
+    }    
     </script>
   </body>
 </html>
