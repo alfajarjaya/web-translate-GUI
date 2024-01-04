@@ -3211,11 +3211,11 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/translate', methods=['POST'])
+@app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/translate', methods=['POST'])
+@app.route('/translate', methods=['GET'])
 def do_translate():
     translate = request.form['translate']
     pilihan = request.form['pilihan']
