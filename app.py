@@ -49,42 +49,30 @@ def translateJepang(kata):
     "sepatu": "kutsu",
     "tas": "kaban",
     "uang": "okane",
-    
-  
-"tiket": "chiketto",
+    "tiket": "chiketto",
     "telepon": "denwa",
     "komputer": "konpyuuta",
     "internet": "intanetto",
-    
- 
-"restoran": "resutoran",
+    "restoran": "resutoran",
     "kucing": "neko",
-    
-    
-"anjing": "inu",
+    "anjing": "inu",
     "burung": "tori",
     "ikan": "sakana",
     "buah": "kudamono",
     "sayur": "yasai",
-    
-   
-"roti": "pan",
+    "roti": "pan",
     "daging": "niku",
     "buah-buahan": "kajitsu",
     "sayuran": "yasai",
     "mangga": "mango",
     "keluarga": "kazoku",
-    
-  
-"teman sekerja": "doukyuusei",
+    "teman sekerja": "doukyuusei",
     "hobi": "shumi",
     "olahraga": "supootsu",
     "pemandangan": "keshiki",
     "museum": "bijutsukan",
     "kamera": "kamera",
-    
- 
-"jalan": "michi",
+    "jalan": "michi",
     "tanda": "shirushi",
     "hujan deras": "osame",
     "kota": "tokai",
@@ -101,21 +89,13 @@ def translateJepang(kata):
     "festival": "matsuri",
     "taman bermain": "yuuenchi",
     "liburan": "kyuujitsu",
-    
-   
-"universitas": "daigaku",
+    "universitas": "daigaku",
     "pekerjaan": "shigoto",
-    
-  
-"kesehatan": "kenkou",
+    "kesehatan": "kenkou",
     "dokter": "isha",
-    
-    
-"apotek": "yakkyoku",
+    "apotek": "yakkyoku",
     "lapangan": "hiroba",
-    
-   
-"sungai": "kawa",
+    "sungai": "kawa",
     "danau": "mizuumi",
     "gunung berapi": "kazan",
     "gurun": "sabaku",
@@ -123,9 +103,7 @@ def translateJepang(kata):
     "pulau": "shima",
     "kereta": "densha",
     "bis": "basu",
-    
-  
-"sepeda": "jitensha",
+    "sepeda": "jitensha",
     "motor": "baiku",
     "pesawat helikopter": "herikoputaa",
     "kapal selam": "sensuikan",
@@ -150,73 +128,41 @@ def translateJepang(kata):
     "mata": "me",
     "hidung": "hana",
     "mulut": "kuchi",
-    
-  
-"telinga": "mimi",
-    
- 
-"tangan": "te",
-    
-  
-"kaki": "ashi",
-    
-   
-"jari": "yubi",
+    "telinga": "mimi",
+    "tangan": "te",
+    "kaki": "ashi",
+    "jari": "yubi",
     "tulang": "hone",
     "otak": "nou",
     "jantung": "shinzou",
     "paru-paru": "hai",
     "perut": "onaka",
-    
-    
-"tulang belakang": "senaka",
- "pencuri": "touzoku",
+    "tulang belakang": "senaka",
+    "pencuri": "touzoku",
     "polisi": "keisatsu",
     "penjara": "keimusho",
     "pahlawan": "eiyuu",
-    
-    
-"monster": "kaibutsu",
+    "monster": "kaibutsu",
     "mimpi": "yume",
     "kenangan": "kioku",
     "cinta": "ai",
     "kebahagiaan": "koufuku",
     "kesedihan": "kanashimi",
     "harapan": "kibou",
-    
-    
-"keberhasilan": "seikou",
-    
- 
-"kegagalan": "shippai",
+    "keberhasilan": "seikou",
+    "kegagalan": "shippai",
     "senyuman": "egao",
-    
-   
-"air mata": "namida",
-    
-    
-"tawa": "warai",
+    "air mata": "namida",
+    "tawa": "warai",
     "berbicara": "hanasu",
-    
-  
-"mendengarkan": "kiku",
+    "mendengarkan": "kiku",
     "menulis": "kaku",
     "melihat": "miru",
-    
-    
-"merasa": "kanjiru",
-    
-   
-"mengerti": "wakaru",
+    "merasa": "kanjiru",
+    "mengerti": "wakaru",
     "berjalan": "aruku",
-    
-    
-"lari": "hashiru",
-    
-    
-
- 
-"berenang": "oyogu",
+    "lari": "hashiru",
+    "berenang": "oyogu",
     "terbang": "tobu",
     "menari": "odoru",
     
@@ -3209,7 +3155,7 @@ def translateInggris(kata):
 
 from flask import Flask, render_template, request, jsonify
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/translate/static')
 
 @app.route('/')
 def index():

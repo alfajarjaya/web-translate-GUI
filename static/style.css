@@ -30,7 +30,11 @@ h1, label {
   background: linear-gradient(to bottom, #003b46, #07575b, #36767e);
 }
 
-form, label, input, button{
+form{
+    margin: 30px;
+}
+
+label, input, button{
     margin: 20px 0px;
 }
 
@@ -45,13 +49,20 @@ input, select {
     padding: 10px 25px;
     border: none;
     font-weight: 900;
+    cursor: pointer;
 }
-
-
 
 #resultContainer {
     color: #fff;
     background: #021c1e;
     padding: 10px 0px;
     margin: 0px 40px;
+}
+
+#btn:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.1);
+    transition: all 1.1s;
+    box-shadow: 2px 2px 20px #6fb98f;
 }

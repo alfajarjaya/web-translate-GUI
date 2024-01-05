@@ -14,6 +14,7 @@
           <label for="translate"
             >Masukkan kata yang ingin di terjemahkan:</label
           >
+          <br />
           <input type="text" id="translateInput" required />
           <br />
           <label for="pilihan"
@@ -41,26 +42,33 @@
         var pilihanInput = document.getElementById("pilihanInput").value;
     
         var xhr = new XMLHttpRequest();
-        var url = "/translate/templates?translate=" + encodeURIComponent(translateInput) + "&pilihan=" + encodeURIComponent(pilihanInput);
+        var url = "/translate?translate=" + encodeURIComponent(translateInput) + "&pilihan=" + encodeURIComponent(pilihanInput);
     
         xhr.open("GET", url, true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if ("terjemahan" in response) {
-                        document.getElementById("resultContainer").innerHTML = "<p>" + response.terjemahan + "</p>";
-                    } else {
-                        alert("Error: " + response.error);
-                    }
-                } else {
-                    alert("Error: " + xhr.status);
-                }
-            }
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    
+        var data = {
+          translate: translateInput,
+          pilihan: pilihanInput
         };
     
-        xhr.send();
-    }    
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              var response = JSON.parse(xhr.responseText);
+              if ("terjemahan" in response) {
+                document.getElementById("resultContainer").innerHTML = "<p>" + response.terjemahan + "</p>";
+              } else {
+                alert("Error: " + response.error);
+              }
+            } else {
+              alert("Error: " + xhr.status);
+            }
+          }
+        };
+    
+        xhr.send(JSON.stringify(data));
+      }
     </script>
   </body>
 </html>
