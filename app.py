@@ -491,6 +491,7 @@ def translateJepang(kata):
 def translateInggris(kata):
     kamusInggris = {
     "selamat malam":"good night",
+    "selamat siang" : "good evening",
     "rumah": "house",
     "mobil": "car",
     "pohon": "tree",

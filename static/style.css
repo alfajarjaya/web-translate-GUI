@@ -59,10 +59,9 @@ input, select {
     margin: 0px 40px;
 }
 
-#btn:hover {
+#btn:active{
     background: #fff;
     color: #000;
-    transform: scale(1.1);
-    transition: all 1.1s;
+    transform: scale(1.12);
     box-shadow: 2px 2px 20px #6fb98f;
 }
