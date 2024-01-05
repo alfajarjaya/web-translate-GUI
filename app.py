@@ -3163,7 +3163,7 @@ app = Flask(__name__, static_url_path='/translate/static')
 def index():
     return render_template('index.html')
 
-@app.route('/translate', methods=['GET'])
+@app.route('/translate/templates', methods=['GET'])
 def do_translate():
     translate = request.args.get('translate')
     pilihan = request.args.get('pilihan')
