@@ -39,28 +39,29 @@
     </div>
 
     <script>
-        function doTranslation() {
-          var translateInput = document.getElementById("translateInput").value;
-          var pilihanInput = document.getElementById("pilihanInput").value;
-
-          var xhr = new XMLHttpRequest();
-          var url =
-            "/translate?translate=" +
-            encodeURIComponent(translateInput) +
-            "&pilihan=" +
-            encodeURIComponent(pilihanInput);
-
-          xhr.open("GET", url, true);
-          xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-          var data = {
-            translate: translateInput,
-            pilihan: pilihanInput,
-          };
-
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-              if (xhr.status == 200) {
+      function doTranslation() {
+        var translateInput = document.getElementById("translateInput").value;
+        var pilihanInput = document.getElementById("pilihanInput").value;
+      
+        var xhr = new XMLHttpRequest();
+        var url =
+          "/translate?translate=" +
+          encodeURIComponent(translateInput) +
+          "&pilihan=" +
+          encodeURIComponent(pilihanInput);
+      
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      
+        var data = {
+          translate: translateInput,
+          pilihan: pilihanInput,
+        };
+      
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              try {
                 var response = JSON.parse(xhr.responseText);
                 if ("terjemahan" in response) {
                   document.getElementById("resultContainer").innerHTML =
@@ -68,14 +69,19 @@
                 } else {
                   alert("Error: " + response.error);
                 }
-              } else {
-                alert("Error: " + xhr.status);
+              } catch (e) {
+                console.error("Error parsing JSON response:", e);
+                // Handle the case where the response is not valid JSON
               }
+            } else {
+              alert("Error: " + xhr.status);
             }
-          };
-
-          xhr.send(JSON.stringify(data));
-        }
+          }
+        };
+      
+        xhr.send(JSON.stringify(data));
+      }
+      
     </script>
   </body>
 </html>
