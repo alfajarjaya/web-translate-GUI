@@ -65,3 +65,26 @@ input, select {
     transform: scale(1.12);
     box-shadow: 2px 2px 20px #6fb98f;
 }
+
+.section {
+    display: none;
+}
+
+.alert {
+    background: linear-gradient(to bottom, #021c1e,#003b46,#004445);
+    padding: 30px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    box-shadow: 2px 2px 20px red;
+}
+
+.alert h3 {
+    color: #fff;
+}
+
+#btnNext {
+    background: #fff;
+    padding: 7px 0px;
+    border: none;
+}
