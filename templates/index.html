@@ -51,27 +51,20 @@
           encodeURIComponent(pilihanInput);
       
         xhr.open("GET", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-      
-        var data = {
-          translate: translateInput,
-          pilihan: pilihanInput,
-        };
       
         xhr.onreadystatechange = function () {
           if (xhr.readyState == 4) {
             if (xhr.status == 200) {
               try {
                 var response = JSON.parse(xhr.responseText);
-                if ("terjemahan" in response) {
+                if (response && typeof response === 'object' && "terjemahan" in response) {
                   document.getElementById("resultContainer").innerHTML =
                     "<p>" + response.terjemahan + "</p>";
                 } else {
-                  alert("Error: " + response.error);
+                  handleInvalidJSONResponse(xhr.responseText);
                 }
               } catch (e) {
-                console.error("Error parsing JSON response:", e);
-                // Handle the case where the response is not valid JSON
+                handleInvalidJSONResponse(xhr.responseText);
               }
             } else {
               alert("Error: " + xhr.status);
@@ -79,9 +72,14 @@
           }
         };
       
-        xhr.send(JSON.stringify(data));
+        xhr.send();
       }
       
+      function handleInvalidJSONResponse(responseText) {
+        console.error("Invalid JSON response:", responseText);
+        // Handle the case where the response is not valid JSON
+        // You can add custom logic or show an error message to the user
+      }      
     </script>
   </body>
 </html>
