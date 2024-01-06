@@ -87,4 +87,37 @@ input, select {
     background: #fff;
     padding: 7px 0px;
     border: none;
+    cursor: pointer;
 }
+
+  @keyframes flipInY {
+    0% {
+      transform: perspective(150px) translateY(100%);
+      opacity: 0;
+    }
+
+    20% {
+        transform: perspective(200px) translateY(80%);
+        opacity: .2;
+    }
+    40% {
+        transform: perspective(250px) translateY(60%);
+        opacity: .4;
+    }
+    60% {
+        transform: perspective(300px) translateY(40%);
+        opacity: .6;
+    }
+    60% {
+        transform: perspective(350px) translateY(20%);
+        opacity: .8;
+    }
+    100% {
+      transform: perspective(400px) translateY(0%);
+      opacity: 1;
+    }
+  }
+
+  .section {
+    animation: flipInY .5s ease-in-out;
+  }

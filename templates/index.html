@@ -10,7 +10,7 @@
     <div class="alert">
       <h1>Hai! Welcome...</h1>
       <h3>Get Started</h3>
-      <button id="btnNext">Next</button>
+      <button id="btnNext" onclick="next()">Next</button>
     </div>
     <div class="section">
       <div class="main">
@@ -23,13 +23,14 @@
           <input type="text" id="translateInput" required />
           <br />
           <label for="pilihan"
-            >Translate ke bahasa Inggris atau bahasa Jepang?</label
+            >Hanya Support bahasa Inggris, bahasa Jepang dan bahasa Indonesia</label
           >
           <br />
           <br />
           <select id="pilihanInput" required>
             <option value="bahasa inggris">Bahasa Inggris</option>
             <option value="bahasa jepang">Bahasa Jepang</option>
+            <option value="bahasa indonesia">Bahasa Indonesia</option>
           </select>
           <br />
           <button type="button" onclick="doTranslation()" id="btn">
@@ -48,10 +49,13 @@
       const myContent = document.querySelector(".section");
       const btnNext = document.getElementById("btnNext");
 
-      btnNext.addEventListener("click", () =>{
-        myAlert.style.display = "none";
-        myContent.style.display = "block";
-      })
+      function next(){
+        btnNext.addEventListener("click", () => {
+          myAlert.style.display = "none";
+          myContent.classList.add("animated");
+          myContent.style.display = "block";
+        });
+      }
 
       function doTranslation() {
         var translateInput = document.getElementById("translateInput").value;
