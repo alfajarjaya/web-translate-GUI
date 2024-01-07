@@ -8,29 +8,30 @@
   </head>
   <body>
     <div class="alert">
-      <h1>Hai! Welcome...</h1>
-      <h3>Get Started</h3>
-      <button id="btnNext" onclick="next()">Next</button>
+      <h1>Hai! Selamat Datang...</h1>
+      <h3>Mari memulai !</h3>
+      <button id="btnNext" onclick="next()">Selanjutnya</button>
     </div>
     <div class="section">
       <div class="main">
-        <h1>Translator</h1>
+        <h1>Terjemahan Nama Hewan</h1>
         <form id="translationForm" method="get" action="/translate">
           <label for="translate"
-            >Masukkan kata yang ingin di terjemahkan:</label
+            >Masukkan nama hewan yang ingin di terjemahkan:</label
           >
           <br />
           <input type="text" id="translateInput" required />
           <br />
           <label for="pilihan"
-            >Hanya Support bahasa Inggris, bahasa Jepang dan bahasa Indonesia</label
+            >Pilih Bahasa : </label
           >
           <br />
           <br />
           <select id="pilihanInput" required>
+            <option value="">Bahasa...</option>
+            <option value="bahasa indonesia">Bahasa Indonesia</option>
             <option value="bahasa inggris">Bahasa Inggris</option>
             <option value="bahasa jepang">Bahasa Jepang</option>
-            <option value="bahasa indonesia">Bahasa Indonesia</option>
           </select>
           <br />
           <button type="button" onclick="doTranslation()" id="btn">
