@@ -1,8 +1,9 @@
 # Translator Website
 
-![Translator Demo](app.png)
+![Translator Demo](./demo/app.png)
+![Translator Demo](./demo/yt.png)
 
-Translator Website is a simple application that allows users to translate words or sentences from one language to another.
+Translator and Download videos from Youtube Website is a simple application that allows users to translate words or sentences from one language to another. And download all video from Youtube
 
 ## Features
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Translator</title>
+    <title>WEB PRIBADI</title>
     <link rel="stylesheet" type="text/css" href="/translate/static/style.css" />
   </head>
   <body>
@@ -12,26 +12,38 @@
       <h3>Mari memulai !</h3>
       <button id="btnNext" onclick="next()">Selanjutnya</button>
     </div>
+
+    <div class="pilihan">
+      <button id="web-translate" onclick="web()">Web Translate</button>
+
+      <button id="video-download" onclick="yt()">
+        Video Youtube Downloader
+      </button>
+    </div>
+
     <div class="section">
       <div class="main">
         <h1>Terjemahan Nama Hewan</h1>
-        <form id="translationForm" method="get" action="/translate">
+        <form id="translationForm" method="get">
           <label for="translate"
             >Masukkan nama hewan yang ingin di terjemahkan:</label
           >
           <br />
-          <input type="text" id="translateInput" required />
+          <input
+            type="text"
+            id="translateInput"
+            required
+            placeholder="contoh : kucing"
+          />
           <br />
-          <label for="pilihan"
-            >Pilih Bahasa : </label
-          >
+          <label for="pilihan">Pilih Bahasa : </label>
           <br />
           <br />
           <select id="pilihanInput" required>
             <option value="">Bahasa...</option>
-            <option value="bahasa indonesia">Bahasa Indonesia</option>
-            <option value="bahasa inggris">Bahasa Inggris</option>
-            <option value="bahasa jepang">Bahasa Jepang</option>
+            {% for language in languages %}
+            <option value="{{ language.code }}">{{ language.name }}</option>
+            {% endfor %}
           </select>
           <br />
           <button type="button" onclick="doTranslation()" id="btn">
@@ -45,17 +57,70 @@
       </div>
     </div>
 
+    <div class="info">
+      <div class="video-yt">
+        <h1>YouTube Downloader</h1>
+
+        {% if success %}
+        <p style="color: green">{{ success }}</p>
+        {% endif %} {% if error %}
+        <p style="color: red">{{ error }}</p>
+        {% endif %}
+
+        <form method="get">
+          <label for="url">YouTube Video URL:</label>
+          <br />
+          <input type="text" name="url" required />
+          <br />
+
+          <label for="resolution">Choose Resolution:</label>
+          <br />
+          <select name="resolution">
+            {% for resolution in resolutions %}
+            <option value="{{ resolution }}">{{ resolution }}</option>
+            {% endfor %}</select
+          ><br />
+
+          <label for="outputPath">Output Path:</label>
+          <input type="text" name="outputPath" required /><br />
+
+          <button type="submit" id="download">Download</button>
+        </form>
+      </div>
+    </div>
+
     <script>
       const myAlert = document.querySelector(".alert");
       const myContent = document.querySelector(".section");
+      const pilihan = document.querySelector(".pilihan");
+
       const btnNext = document.getElementById("btnNext");
 
-      function next(){
+      const ytDownload = document.querySelector(".info");
+
+      function next() {
         btnNext.addEventListener("click", () => {
           myAlert.style.display = "none";
-          myContent.classList.add("animated");
-          myContent.style.display = "block";
+          pilihan.style.display = "block";
+          myContent.style.display = "none";
+          ytDownload.style.display = "none";
         });
+      }
+
+      function web() {
+        myAlert.style.display = "none";
+        pilihan.style.display = "none";
+        myContent.style.display = "block";
+        ytDownload.style.display = "none";
+        myContent.classList.add("animated");
+      }
+
+      function yt() {
+        myAlert.style.display = "none";
+        pilihan.style.display = "none";
+        myContent.style.display = "none";
+        ytDownload.style.display = "block";
+        ytDownload.classList.add("animated");
       }
 
       function doTranslation() {
@@ -77,7 +142,7 @@
               var response = JSON.parse(xhr.responseText);
               if ("terjemahan" in response) {
                 document.getElementById("resultContainer").innerHTML =
-                  "<p>" + response.terjemahan + "</p>";
+                  response.terjemahan;
               } else {
                 alert("Error: " + response.error);
               }

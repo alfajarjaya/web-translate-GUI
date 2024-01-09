@@ -18,7 +18,7 @@ h1, label {
     color: #fff;
 }
 
-.main {
+.main, .video-yt {
   text-align: center;
   width: 100%;
   overflow: hidden;
@@ -43,7 +43,7 @@ input, select {
     color: #000;
 }
 
-#btn {
+#btn, #download {
     color: #000;
     background: #6fb98f;
     padding: 10px 25px;
@@ -83,9 +83,9 @@ input, select {
     color: #fff;
 }
 
-#btnNext {
+#btnNext, #web-translate, #video-download {
     background: #fff;
-    padding: 7px 0px;
+    padding: 7px 50px;
     border: none;
     cursor: pointer;
 }
@@ -118,6 +118,11 @@ input, select {
     }
   }
 
-  .section {
+  .section, .video-yt {
     animation: flipInY .5s ease-in-out;
   }
+
+  .pilihan , .info {
+    display: none;
+  }
+
