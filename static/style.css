@@ -43,7 +43,7 @@ input, select {
     color: #000;
 }
 
-#btn, #download {
+#btn, #download, #back, .back {
     color: #000;
     background: #6fb98f;
     padding: 10px 25px;

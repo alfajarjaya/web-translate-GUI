@@ -49,11 +49,13 @@
           <button type="button" onclick="doTranslation()" id="btn">
             Terjemahkan
           </button>
+          <br />
         </form>
-
+        
         <div class="hasil">
           <p type="text" id="resultContainer"></p>
         </div>
+        <button type="button" class="back">Kembali</button>
       </div>
     </div>
 
@@ -84,7 +86,8 @@
           <label for="outputPath">Output Path:</label>
           <input type="text" name="outputPath" required /><br />
 
-          <button type="submit" id="download">Download</button>
+          <button type="submit" id="download">Download</button><br />
+          <button type="button" id="back">Kembali</button>
         </form>
       </div>
     </div>
@@ -95,6 +98,8 @@
       const pilihan = document.querySelector(".pilihan");
 
       const btnNext = document.getElementById("btnNext");
+      const btnBackID = document.getElementById("back");
+      const btnBackCl = document.querySelector(".back");
 
       const ytDownload = document.querySelector(".info");
 
@@ -106,6 +111,20 @@
           ytDownload.style.display = "none";
         });
       }
+
+      btnBackID.addEventListener("click", () => {
+        myAlert.style.display = "none";
+        pilihan.style.display = "block";
+        myContent.style.display = "none";
+        ytDownload.style.display = "none";
+      });
+
+      btnBackCl.addEventListener("click", () => {
+        myAlert.style.display = "none";
+        pilihan.style.display = "block";
+        myContent.style.display = "none";
+        ytDownload.style.display = "none";
+      });
 
       function web() {
         myAlert.style.display = "none";
