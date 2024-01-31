@@ -1,0 +1,42 @@
+* {
+    font-size: 20px;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to top, rgb(3, 21, 39), rgb(118, 148, 178));
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1em;
+    background:linear-gradient(to bottom, rgb(0, 22, 78),#600000);
+    padding: 10px 50px;
+    color: #fff;
+    text-align: center;
+    align-items: center;
+}
+
+input {
+    font-size: 12px;
+    padding: 7px;
+}
+
+button {
+    background: #fff;
+    border: none;
+    padding: 5px 0px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkcyan;
+    transform: scale(1.1);
+    transition: all 1.1s;
+    color: #fff;
+}

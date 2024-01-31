@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WEB PRIBADI</title>
-    <link rel="stylesheet" type="text/css" href="/translate/static/style.css" />
+    <link rel="stylesheet" type="text/css" href="/translate/static/style/style.css" />
   </head>
   <body>
     <div class="alert">
@@ -13,19 +13,24 @@
       <button id="btnNext" onclick="next()">Selanjutnya</button>
     </div>
 
-    
     <div class="pilihan">
-      <button id="web-translate" onclick="web()">Web Translate</button>
+      <button id="web-translate" onclick="web()" class="buttonGo">
+        Web Translate
+      </button>
 
-      <button id="video-download" onclick="yt()">
+      <button id="video-download" onclick="yt()" class="buttonGo">
         Video Youtube Downloader
+      </button>
+
+      <button id="video-download" onclick="qr()" class="buttonGo">
+        qrCode Generate
       </button>
     </div>
 
     <div class="section">
       <div class="main">
         <h1>Terjemahan Nama Hewan</h1>
-        <form id="translationForm" method="get">
+        <form id="translationForm" method="post">
           <label for="translate"
             >Masukkan nama hewan yang ingin di terjemahkan:</label
           >
@@ -47,16 +52,18 @@
             {% endfor %}
           </select>
           <br />
-          <button type="button" onclick="doTranslation()" id="btn">
-            Terjemahkan
-          </button>
+          <div class="btn">
+            <button type="button" onclick="doTranslation()" id="btn">
+              Terjemahkan
+            </button>
+            <button type="button" class="back">Kembali</button>
+          </div>
           <br />
         </form>
-        
+
         <div class="hasil">
           <p type="text" id="resultContainer"></p>
         </div>
-        <button type="button" class="back">Kembali</button>
       </div>
     </div>
 
@@ -86,98 +93,32 @@
 
           <label for="outputPath">Output Path:</label>
           <input type="text" name="outputPath" required /><br />
-
-          <button type="submit" id="download">Download</button><br />
-          <button type="button" id="back">Kembali</button>
+          <div class="btn">
+            <button type="submit" id="download">Download</button><br />
+            <button type="button" id="back">Kembali</button>
+          </div>
         </form>
       </div>
     </div>
 
-    <script>
-      const myAlert = document.querySelector(".alert");
-      const myContent = document.querySelector(".section");
-      const pilihan = document.querySelector(".pilihan");
+    <div class="qrCode">
+      <div class="qr" style="padding: 0px 20px">
+        <label for="input">Masukkan Link yang akan di Ubah</label>
+        <br />
+        <input type="text" id="input" name="input" />
+        <button onclick="generateQRCode()" style="padding: 15px 0px">Generate QR Code</button>
+        <br />
+        <br />
+        <div style="text-align:center;">
+          <div id="output" style="display:flex;justify-content:center"></div>
+          <br />
+          <br />
+          <a id="downloadLink" style="display: none; color:#fff; ">Unduh QR Code</a>
+        </div>
+      </div>
+    </div>
 
-      const btnNext = document.getElementById("btnNext");
-      const btnBackID = document.getElementById("back");
-      const btnBackCl = document.querySelector(".back");
-
-      const ytDownload = document.querySelector(".info");
-
-      function next() {
-        btnNext.addEventListener("click", () => {
-          myAlert.style.display = "none";
-          pilihan.style.display = "block";
-          myContent.style.display = "none";
-          ytDownload.style.display = "none";
-        });
-      }
-
-      btnBackID.addEventListener("click", () => {
-        myAlert.style.display = "none";
-        pilihan.style.display = "block";
-        myContent.style.display = "none";
-        ytDownload.style.display = "none";
-      });
-
-      btnBackCl.addEventListener("click", () => {
-        myAlert.style.display = "none";
-        pilihan.style.display = "block";
-        myContent.style.display = "none";
-        ytDownload.style.display = "none";
-      });
-
-      function web() {
-        myAlert.style.display = "none";
-        pilihan.style.display = "none";
-        myContent.style.display = "block";
-        ytDownload.style.display = "none";
-        myContent.classList.add("animated");
-      }
-
-      function yt() {
-        myAlert.style.display = "none";
-        pilihan.style.display = "none";
-        myContent.style.display = "none";
-        ytDownload.style.display = "block";
-        ytDownload.classList.add("animated");
-      }
-
-      function doTranslation() {
-        var translateInput = document.getElementById("translateInput").value;
-        var pilihanInput = document.getElementById("pilihanInput").value;
-        var url =
-          "/translate/templates?translate=" +
-          encodeURIComponent(translateInput) +
-          "&pilihan=" +
-          encodeURIComponent(pilihanInput);
-
-        var xhr = new XMLHttpRequest();
-
-        xhr.open("GET", url, true);
-
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-              var response = JSON.parse(xhr.responseText);
-              if ("terjemahan" in response) {
-                document.getElementById("resultContainer").innerHTML =
-                  response.terjemahan;
-              } else {
-                alert("Error: " + response.error);
-              }
-            } else {
-              alert("Error: " + xhr.status);
-            }
-          }
-        };
-
-        xhr.send();
-      }
-
-      function handleInvalidJSONResponse(responseText) {
-        console.error("Invalid JSON response:", responseText);
-      }
-    </script>
+    <script src="/translate/static/js/sc.js"></script>
+    <script src="/translate/static/js/db.js"></script>
   </body>
 </html>

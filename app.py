@@ -48,26 +48,25 @@ def index():
 
     return render_template("index.html", languages=languages_data['languages'])
 
-@app.route('/translate/templates', methods=['GET'])
+@app.route('/translate/templates', methods=['POST','GET'])
 def do_translate():
-    translate = request.args.get('translate')
+    translate = request.args.get('translate').lower()
     pilihan = request.args.get('pilihan')
+    
     indonesia = ina.translateIndo(translate)
     english = eng.translateInggris(translate)
     jepang = jpg.translateJepang(translate)
     
-
     if pilihan == "en":
         terjemahan = english
     elif pilihan == "ja":
         terjemahan = jepang
     elif pilihan == "id":
-        terjemahan= indonesia
+        terjemahan = indonesia
     else:
         return jsonify({"error": "Pilihan tidak valid. Silakan pilih bahasa yang valid!"})
 
     return jsonify({"terjemahan": terjemahan})
-
 
 if __name__ == '__main__':
     app.run(debug=True)
