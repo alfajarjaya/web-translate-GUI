@@ -756,5 +756,4 @@ def translateJepang(kata):
 
 
 }
-
     return kamusJepang.get(kata.lower(), "KATA TIDAK DITEMUKAN DALAM KAMUS BAHASA JEPANG.")

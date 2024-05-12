@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WEB PRIBADI</title>
-    <link rel="stylesheet" type="text/css" href="/translate/static/style/style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/translate/static/style/style.css"
+    />
+    <script src="https://unpkg.com/feather-icons"></script>
   </head>
   <body>
     <div class="alert">
@@ -106,19 +111,31 @@
         <label for="input">Masukkan Link yang akan di Ubah</label>
         <br />
         <input type="text" id="input" name="input" />
-        <button onclick="generateQRCode()" style="padding: 15px 0px">Generate QR Code</button>
+        <button onclick="generateQRCode()" style="padding: 15px 0px">
+          Generate QR Code
+        </button>
         <br />
         <br />
-        <div style="text-align:center;">
-          <div id="output" style="display:flex;justify-content:center"></div>
+        <div class="mas">
+          <div id="output" style="display: flex; justify-content: center"></div>
           <br />
           <br />
-          <a id="downloadLink" style="display: none; color:#fff; ">Unduh QR Code</a>
+          <div style="display:flex; align-items:center; justify-content:center">
+            <a
+              id="downloadLink"
+              style="display: none; color: #fff; text-decoration: none"
+            >
+              <i data-feather="save"></i>download qrCode
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
     <script src="/translate/static/js/sc.js"></script>
     <script src="/translate/static/js/db.js"></script>
+    <script>
+      feather.replace();
+    </script>
   </body>
 </html>
