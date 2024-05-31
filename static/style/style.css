@@ -61,14 +61,8 @@ select {
   cursor: pointer;
 }
 
-.back,
-#back {
-  color: #fff;
-  background: #951515;
-  padding: 10px 25px;
-  border: none;
-  font-weight: 900;
-  cursor: pointer;
+.btn {
+  margin-top: 30px;
 }
 
 #resultContainer {
@@ -83,10 +77,6 @@ select {
   color: #000;
   transform: scale(1.12);
   box-shadow: 2px 2px 20px #6fb98f;
-}
-
-.section {
-  display: none;
 }
 
 .alert {
@@ -108,6 +98,8 @@ select {
   padding: 7px 50px;
   border: none;
   cursor: pointer;
+  color: #000;
+  text-decoration: none;
 }
 
 @keyframes flipInY {

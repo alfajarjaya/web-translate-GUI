@@ -1,15 +1,16 @@
 * {
     font-size: 20px;
 }
-body {
+
+/* body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background: linear-gradient(to top, rgb(3, 21, 39), rgb(118, 148, 178));
-}
+} */
 
-.main {
+/* .main {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 1em;
@@ -18,13 +19,14 @@ body {
     color: #fff;
     text-align: center;
     align-items: center;
-}
+} */
 
 input {
     font-size: 12px;
     padding: 7px;
 }
 
+/* 
 button {
     background: #fff;
     border: none;
@@ -39,4 +41,34 @@ button:hover {
     transform: scale(1.1);
     transition: all 1.1s;
     color: #fff;
+} */
+
+.back {
+    background: rgb(127, 0, 0);
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.btn-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn-translate {
+    background: rgb(0, 127, 13);
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
 }

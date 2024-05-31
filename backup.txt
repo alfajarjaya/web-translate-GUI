@@ -1,0 +1,61 @@
+    <div class="info">
+      <div class="video-yt">
+        <h1>YouTube Downloader</h1>
+
+        {% if success %}
+        <p style="color: green">{{ success }}</p>
+        {% endif %} {% if error %}
+        <p style="color: red">{{ error }}</p>
+        {% endif %}
+
+        <form method="get">
+          <label for="url">YouTube Video URL:</label>
+          <br />
+          <input type="text" name="url" required />
+          <br />
+
+          <label for="resolution">Choose Resolution:</label>
+          <br />
+          <select name="resolution">
+            {% for resolution in resolutions %}
+            <option value="{{ resolution }}">{{ resolution }}</option>
+            {% endfor %}</select
+          ><br />
+
+          <label for="outputPath">Output Path:</label>
+          <input type="text" name="outputPath" required /><br />
+          <div class="btn">
+            <button type="submit" id="download">Download</button><br />
+            <button type="button" id="back">Kembali</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="qrCode">
+      <div class="qr" style="padding: 0px 20px">
+        <label for="input">Masukkan Link yang akan di Ubah</label>
+        <br />
+        <input type="text" id="input" name="input" />
+        <button onclick="generateQRCode()" style="padding: 15px 0px">
+          Generate QR Code
+        </button>
+        <br />
+        <br />
+        <div class="mas">
+          <div id="output" style="display: flex; justify-content: center"></div>
+          <br />
+          <br />
+          <div
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            <a
+              id="downloadLink"
+              style="display: none; color: #fff; text-decoration: none"
+            >
+              <i data-feather="save"></i>download qrCode
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>

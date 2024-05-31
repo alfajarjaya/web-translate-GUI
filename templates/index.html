@@ -1,141 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WEB PRIBADI</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/translate/static/style/style.css"
-    />
-    <script src="https://unpkg.com/feather-icons"></script>
-  </head>
-  <body>
-    <div class="alert">
-      <h1>Hai! Selamat Datang...</h1>
-      <h3>Mari memulai !</h3>
-      <button id="btnNext" onclick="next()">Selanjutnya</button>
-    </div>
-
-    <div class="pilihan">
-      <button id="web-translate" onclick="web()" class="buttonGo">
-        Web Translate
-      </button>
-
-      <button id="video-download" onclick="yt()" class="buttonGo">
-        Video Youtube Downloader
-      </button>
-
-      <button id="video-download" onclick="qr()" class="buttonGo">
-        qrCode Generate
-      </button>
-    </div>
-
-    <div class="section">
-      <div class="main">
-        <h1>Terjemahan Nama Hewan</h1>
-        <form id="translationForm" method="post">
-          <label for="translate"
-            >Masukkan nama hewan yang ingin di terjemahkan:</label
-          >
-          <br />
-          <input
-            type="text"
-            id="translateInput"
-            required
-            placeholder="contoh : kucing"
-          />
-          <br />
-          <label for="pilihan">Pilih Bahasa : </label>
-          <br />
-          <br />
-          <select id="pilihanInput" required>
-            <option value="">Bahasa...</option>
-            {% for language in languages %}
-            <option value="{{ language.code }}">{{ language.name }}</option>
-            {% endfor %}
-          </select>
-          <br />
-          <div class="btn">
-            <button type="button" onclick="doTranslation()" id="btn">
-              Terjemahkan
-            </button>
-            <button type="button" class="back">Kembali</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WEB PRIBADI</title>
+  <link rel="stylesheet" type="text/css" href="/translate/static/style/style.css" />
+  <link rel="stylesheet" type="text/css" href="/translate/static/style/index.css" />
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <div class="section">
+    <div class="main">
+      <h1>Terjemahan Nama Hewan</h1>
+      <form id="translationForm" method="post">
+        <label for="translate">Masukkan nama hewan yang ingin di terjemahkan:</label><br />
+        <input type="text" id="translateInput" required placeholder="contoh : kucing" /><br />
+        <label for="pilihan">Pilih Bahasa : </label><br /><br />
+        <select id="pilihanInput" required>
+          <option value="">Bahasa...</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="en">Bahasa Inggris</option>
+          <option value="ja">Bahasa Jepang</option>
+        </select><br />
+        <div class="btn">
+          <button type="button" id="btn-translate">Terjemahkan</button>
+          <div class="btn-link">
+            <a href="/" class="back">Kembali</a>
           </div>
-          <br />
-        </form>
-
-        <div class="hasil">
-          <p type="text" id="resultContainer"></p>
-        </div>
+        </div><br />
+      </form>
+      <div class="hasil">
+        <p type="text" id="resultContainer"></p>
       </div>
     </div>
+  </div>
 
-    <div class="info">
-      <div class="video-yt">
-        <h1>YouTube Downloader</h1>
-
-        {% if success %}
-        <p style="color: green">{{ success }}</p>
-        {% endif %} {% if error %}
-        <p style="color: red">{{ error }}</p>
-        {% endif %}
-
-        <form method="get">
-          <label for="url">YouTube Video URL:</label>
-          <br />
-          <input type="text" name="url" required />
-          <br />
-
-          <label for="resolution">Choose Resolution:</label>
-          <br />
-          <select name="resolution">
-            {% for resolution in resolutions %}
-            <option value="{{ resolution }}">{{ resolution }}</option>
-            {% endfor %}</select
-          ><br />
-
-          <label for="outputPath">Output Path:</label>
-          <input type="text" name="outputPath" required /><br />
-          <div class="btn">
-            <button type="submit" id="download">Download</button><br />
-            <button type="button" id="back">Kembali</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div class="qrCode">
-      <div class="qr" style="padding: 0px 20px">
-        <label for="input">Masukkan Link yang akan di Ubah</label>
-        <br />
-        <input type="text" id="input" name="input" />
-        <button onclick="generateQRCode()" style="padding: 15px 0px">
-          Generate QR Code
-        </button>
-        <br />
-        <br />
-        <div class="mas">
-          <div id="output" style="display: flex; justify-content: center"></div>
-          <br />
-          <br />
-          <div style="display:flex; align-items:center; justify-content:center">
-            <a
-              id="downloadLink"
-              style="display: none; color: #fff; text-decoration: none"
-            >
-              <i data-feather="save"></i>download qrCode
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script src="/translate/static/js/sc.js"></script>
-    <script src="/translate/static/js/db.js"></script>
-    <script>
-      feather.replace();
-    </script>
-  </body>
+  <script src="/translate/static/js/sc.js"></script>
+  <script src="/translate/static/js/db.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
 </html>

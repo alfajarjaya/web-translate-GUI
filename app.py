@@ -1,61 +1,33 @@
-# Import data from database
-from db import ina,eng,jpg
+from flask import Flask, render_template, request, jsonify, redirect, url_for
+from db import ina, eng, jpg
 import json
-
-# flask extension
-from flask import Flask, render_template, request, jsonify
-
-# yt extension
-from pytube import YouTube
-from urllib.parse import unquote 
 
 app = Flask(__name__, static_url_path='/translate/static')
 
+# Load languages data from JSON
 with open('./json/languages.json', 'r') as json_file:
     languages_data = json.load(json_file)
 
-def on_progress(stream, chunk, remaining):
-    percent = (1 - remaining / stream.filesize) * 100
-    print(f"\rDownload: {stream.title} - {percent:.2f}% complete", end="")
-
-def display_available_resolutions(yt):
-    resolutions = []
-    for stream in yt.streams.filter(file_extension='mp4'):
-        resolutions.append(stream.resolution)
-    return resolutions
-
-@app.route('/', methods=['GET','POST'])
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        url = request.form['url']
-        resolution = request.form['resolution']
-        outputPath = request.form['outputPath']
+    return render_template('welcome.html')
 
-        try:
-            yt = YouTube(url, on_progress_callback=on_progress)
-            resolutions = display_available_resolutions(yt)
+@app.route('/translate')
+def translate():
+    return render_template('index.html', languages=languages_data)
 
-            if resolution not in resolutions:
-                return render_template("index.html", error="Invalid resolution. Choose from available resolutions.")
-
-            video = yt.streams.filter(res=resolution, file_extension='mp4').first()
-            video.download(outputPath)
-
-            return render_template("index.html", success="Download completed successfully!")
-
-        except Exception as e:
-            return render_template("index.html", error=f"Error: {e}")
-
-    return render_template("index.html", languages=languages_data['languages'])
-
-@app.route('/translate/templates', methods=['POST','GET'])
+@app.route('/translates', methods=['POST'])
 def do_translate():
-    translate = request.args.get('translate').lower()
-    pilihan = request.args.get('pilihan')
+    data = request.json
+    translate_text = data.get('translate', '').lower()
+    pilihan = data.get('pilihan')
     
-    indonesia = ina.translateIndo(translate)
-    english = eng.translateInggris(translate)
-    jepang = jpg.translateJepang(translate)
+    if not translate_text or not pilihan:
+        return jsonify({"error": "Translate text or pilihan is missing!"}), 400
+    
+    indonesia = ina.translateIndo(translate_text)
+    english = eng.translateInggris(translate_text)
+    jepang = jpg.translateJepang(translate_text)
     
     if pilihan == "en":
         terjemahan = english
@@ -64,12 +36,9 @@ def do_translate():
     elif pilihan == "id":
         terjemahan = indonesia
     else:
-        return jsonify({"error": "Pilihan tidak valid. Silakan pilih bahasa yang valid!"})
+        return jsonify({"error": "Pilihan tidak valid. Silakan pilih bahasa yang valid!"}), 400
 
-    return jsonify({"terjemahan": terjemahan})
+    return jsonify({"terjemahan": terjemahan}), 200
 
 if __name__ == '__main__':
-    app.run(
-        host='0.0.0.0',
-        debug=True
-        )
+    app.run(host='0.0.0.0', debug=True)
