@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
               Swal.fire('Error', 'Failed to parse JSON response: ' + error.message, 'error');
             }
           } else {
-            Swal.fire('Error', `HTTP status ${xhr.status}`, 'error');
+            Swal.fire('Error', 'Failed to translate text. Please try again.', 'error');
           }
         }
       };
